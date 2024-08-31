@@ -1,113 +1,239 @@
-import Image from "next/image";
+// import React from "react";
+// import { useInView } from "react-intersection-observer";
+// import CountUp from "react-countup";
 
-export default function Home() {
+// const HomePage = () => {
+//   const { ref, inView } = useInView({
+//     triggerOnce: true,
+//     threshold: 0.1,
+//   });
+
+//   return (
+//     <div className="flex items-center justify-center h-screen m-0 bg-cover bg-center bg-no-repeat bg-[url('/Back.png')]">
+//       <div className="flex items-center text-4xl font-bold text-white">
+//         <div className="flex items-center justify-center mr-2 animate-fadeInScale">
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="40"
+//             height="40"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             className="feather feather-layers"
+//           >
+//             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+//             <polyline points="2 17 12 22 22 17"></polyline>
+//             <polyline points="2 12 12 17 22 12"></polyline>
+//           </svg>
+//         </div>
+//         <span className="letter animate-fadeInScale delay-100">p</span>
+//         <span className="letter animate-fadeInScale delay-200">a</span>
+//         <span className="letter animate-fadeInScale delay-300">t</span>
+//         <span className="letter animate-fadeInScale delay-400">h</span>
+//         <span className="letter animate-fadeInScale delay-500">f</span>
+//         <span className="letter animate-fadeInScale delay-600">i</span>
+//         <span className="letter animate-fadeInScale delay-700">n</span>
+//         <span className="letter animate-fadeInScale delay-800">d</span>
+//         <span className="letter animate-fadeInScale delay-900">e</span>
+//         <span className="letter animate-fadeInScale delay-1000">r</span>
+//       </div>
+
+//       <div className="flex flex-col min-h-screen m-0">
+//         <div className="flex items-center justify-center h-screen m-0 bg-cover bg-center bg-no-repeat bg-[url('/Back.png')]">
+//           <div className="flex items-center text-4xl font-bold text-white">
+//             <div className="flex items-center justify-center mr-2 animate-fadeInScale">
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 width="40"
+//                 height="40"
+//                 viewBox="0 0 24 24"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 strokeWidth="2"
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 className="feather feather-layers"
+//               >
+//                 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+//                 <polyline points="2 17 12 22 22 17"></polyline>
+//                 <polyline points="2 12 12 17 22 12"></polyline>
+//               </svg>
+//             </div>
+//             {["p", "a", "t", "h", "f", "i", "n", "d", "e", "r"].map(
+//               (letter, index) => (
+//                 <span
+//                   key={index}
+//                   className={`letter animate-fadeInScale delay-${
+//                     (index + 1) * 100
+//                   }`}
+//                 >
+//                   {letter}
+//                 </span>
+//               )
+//             )}
+//           </div>
+//         </div>
+
+//         <div className="bg-blue-600 text-white py-16 px-4" ref={ref}>
+//           <div className="max-w-6xl mx-auto">
+//             <h1 className="text-4xl font-bold mb-8">
+//               Where Career Takes Flight
+//             </h1>
+
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+//               {inView && (
+//                 <>
+//                   <div className="text-center">
+//                     <CountUp
+//                       end={100}
+//                       suffix="k+"
+//                       duration={2.5}
+//                       className="text-3xl font-bold"
+//                     />
+//                     <p>Students Registered</p>
+//                   </div>
+//                   <div className="text-center">
+//                     <CountUp
+//                       end={50}
+//                       suffix="k+"
+//                       duration={2.5}
+//                       className="text-3xl font-bold"
+//                     />
+//                     <p>Mentors</p>
+//                   </div>
+//                   <div className="text-center">
+//                     <CountUp
+//                       end={238}
+//                       suffix="k"
+//                       duration={2.5}
+//                       className="text-3xl font-bold"
+//                     />
+//                     <p>Local + Remote Jobs</p>
+//                   </div>
+//                 </>
+//               )}
+//             </div>
+
+//             <h2 className="text-2xl font-semibold mb-4">
+//               Supported by Ministry of Education
+//             </h2>
+
+//             <h3 className="text-xl mb-4">Tech Trends, Jobs + Companies</h3>
+
+//             <p className="text-lg">Learn. Grow. Build your career.</p>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
+"use client";
+import React, { useState, useEffect } from "react";
+import CountUp from "react-countup";
+
+const HomePage = () => {
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex flex-col min-h-screen m-0 p-0">
+      <div className="flex items-center justify-center h-screen m-0 p-0 bg-cover bg-center bg-no-repeat bg-[url('/Back.png')]">
+        <div className="flex items-center text-4xl font-bold text-white">
+          <div className="flex items-center justify-center mr-2 animate-fadeInScale">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-layers"
+            >
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          {["p", "a", "t", "h", "f", "i", "n", "d", "e", "r"].map(
+            (letter, index) => (
+              <span
+                key={index}
+                className={`letter animate-fadeInScale delay-${
+                  (index + 1) * 100
+                }`}
+              >
+                {letter}
+              </span>
+            )
+          )}
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="bg-blue-600 text-white py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-4xl font-bold mb-8">Where Career Takes Flight</h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {shouldAnimate && (
+              <>
+                <div className="text-center">
+                  <CountUp
+                    end={100}
+                    suffix="k+"
+                    duration={2.5}
+                    className="text-3xl font-bold"
+                  />
+                  <p>Students Registered</p>
+                </div>
+                <div className="text-center">
+                  <CountUp
+                    end={50}
+                    suffix="k+"
+                    duration={2.5}
+                    className="text-3xl font-bold"
+                  />
+                  <p>Mentors</p>
+                </div>
+                <div className="text-center">
+                  <CountUp
+                    end={238}
+                    suffix="k"
+                    duration={2.5}
+                    className="text-3xl font-bold"
+                  />
+                  <p>Local + Remote Jobs</p>
+                </div>
+              </>
+            )}
+          </div>
+
+          <h2 className="text-2xl font-semibold mb-4">
+            Supported by Ministry of Education
+          </h2>
+
+          <h3 className="text-xl mb-4">Tech Trends, Jobs + Companies</h3>
+
+          <p className="text-lg">Learn. Grow. Build your career.</p>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
-}
+};
+
+export default HomePage;
